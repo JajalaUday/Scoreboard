@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scoreboard</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="score.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Scoreboard</h1>
+    <!-- Match setup -->
+    <div class="setup">
+      <div class="row">
+        <label for="teamAName">Team A</label>
+        <input id="teamAName" placeholder="Team A" />
+      </div>
+      <div class="row">
+        <label for="teamBName">Team B</label>
+        <input id="teamBName" placeholder="Team B" />
+      </div>
+      <div class="row">
+        <label for="oversPerInnings">Overs per innings</label>
+        <input id="oversPerInnings" type="number" min="1" placeholder="e.g., 20" />
+      </div>
+      <div class="row">
+        <label for="wicketsPerInnings">Wickets per innings</label>
+        <input id="wicketsPerInnings" type="number" min="1" max="10" placeholder="10" />
+      </div>
+      <div class="row actions">
+        <button id="startMatch">Start Match</button>
+        <button id="newMatch" class="secondary">New Match</button>
+      </div>
+    </div>
+
+    <!-- Scorecards -->
+    <div class="cards">
+      <div id="cardA" class="card">
+        <div class="card-header">
+          <h2 id="nameA">Team A</h2>
+          <span class="badge" id="badgeA">Batting</span>
+        </div>
+        <p class="scoreline">
+          <strong><span id="runsA">0</span>/<span id="wktsA">0</span></strong>
+        </p>
+        <p>Overs: <strong><span id="oversA">0.0</span></strong>
+          <span class="rr" id="rrA"></span>
+        </p>
+        <p class="hint" id="hintA">Balls this over: 0/6</p>
+        <p class="extras">Extras:
+          <strong><span id="extrasA">0</span></strong>
+          <small>(WD: <span id="wdA">0</span>, NB: <span id="nbA">0</span>)</small>
+        </p>
+
+        <!-- Over summary A -->
+        <div class="over-summary">
+          <h3 class="over-title">Over summary</h3>
+          <div id="oversAList" class="over-list"></div>
+        </div>
+      </div>
+
+      <div id="cardB" class="card">
+        <div class="card-header">
+          <h2 id="nameB">Team B</h2>
+          <span class="badge" id="badgeB">Yet to bat</span>
+        </div>
+        <p class="scoreline">
+          <strong><span id="runsB">0</span>/<span id="wktsB">0</span></strong>
+        </p>
+        <p>Overs: <strong><span id="oversB">0.0</span></strong>
+          <span class="rr" id="rrB"></span>
+        </p>
+        <p class="hint" id="hintB">Balls this over: 0/6</p>
+        <p class="extras">Extras:
+          <strong><span id="extrasB">0</span></strong>
+          <small>(WD: <span id="wdB">0</span>, NB: <span id="nbB">0</span>)</small>
+        </p>
+
+        <!-- Over summary B -->
+        <div class="over-summary">
+          <h3 class="over-title">Over summary</h3>
+          <div id="oversBList" class="over-list"></div>
+        </div>
+
+        <!-- Chasing panel (2nd innings) -->
+        <div id="chaseBox" class="chase hidden">
+          <p><strong>Target:</strong> <span id="targetVal">—</span></p>
+          <p><strong>Needed:</strong> <span id="needVal">—</span> off <span id="ballsLeftVal">—</span> balls</p>
+          <p><strong>Req RR:</strong> <span id="reqRR">—</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div id="status" class="status">Set up the match to begin.</div>
+
+    <!-- Controls (always control the CURRENT batting team) -->
+    <div class="controls">
+      <!-- legal deliveries (advance ball) -->
+      <button id="dot">Dot</button>
+      <button id="r1">+1</button>
+      <button id="r2">+2</button>
+      <button id="r3">+3</button>
+      <button id="r4">+4</button>
+      <button id="r6">+6</button>
+      <button id="wkt">Wicket</button>
+
+      <!-- extras (do NOT advance the ball) -->
+      <button id="wd" class="secondary">Wide (+1)</button>
+      <button id="nb" class="secondary">No Ball (+1)</button>
+
+      <!-- innings/match -->
+      <button id="endInnings" class="warn">End Innings</button>
+    </div>
+  </div>
+</body>
+</html>
